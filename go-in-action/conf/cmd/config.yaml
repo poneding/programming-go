@@ -1,0 +1,9 @@
+app:
+  about: this is an awesome app.
+  version: v1.0.0
+db:
+  host: 127.0.0.1
+  port: 3306
+  name: test
+  user: dp
+  password: '123456'

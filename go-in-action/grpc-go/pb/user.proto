@@ -1,0 +1,27 @@
+syntax="proto3";
+package pb;
+option go_package = "grpc-go/pb";
+
+service CreateUserService{
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+}
+
+message CreateUserRequest{
+    // @inject_tag: json:"first_name"
+    string FirstName=1;
+    // @inject_tag: json:"last_name"
+    string LastName=2;
+    // @inject_tag: json:"age"
+    uint32 Age=3;
+}
+
+message CreateUserResponse{
+    // @inject_tag: json:"id"
+    uint32 ID=1;
+    // @inject_tag: json:"first_name"
+    string FirstName=2;
+    // @inject_tag: json:"last_name"
+    string LastName=3;
+    // @inject_tag: json:"age"
+    uint32 Age=4;
+}

@@ -1,0 +1,13 @@
+go 1.19
+
+use (
+	./go-design-patterns
+	./go-in-action/chat
+	./go-in-action/goemail
+	./go-in-action/movies-crud
+	./go-in-action/todolist/task
+	./go-in-action/todolist/user
+	./go-in-action/grpc-go
+	./go-corner
+	./go-programming-lang
+)

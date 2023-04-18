@@ -1,0 +1,17 @@
+type Query{
+    ping: String
+    user: User
+}
+
+type User{
+    id: ID!
+    name: String!
+    age: Int
+    sex: Sex
+    mates: [User]
+}
+
+enum Sex{
+    Male
+    Female
+}
