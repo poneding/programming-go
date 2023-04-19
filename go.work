@@ -4,6 +4,7 @@ use (
 	./go-design-patterns
 	./go-in-action/chat
 	./go-in-action/goemail
+	./go-in-action/gorm-viper
 	./go-in-action/movies-crud
 	./go-in-action/todolist/task
 	./go-in-action/todolist/user
