@@ -1,7 +1,8 @@
 package config
 
 import (
-	"github.com/poneding/learning-go/practice/fiber/entities"
+	"fiber/entities"
+
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

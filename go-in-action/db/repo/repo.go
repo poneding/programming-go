@@ -1,7 +1,7 @@
 package repo
 
 import (
-	"github.com/poneding/learning-go/practice/db"
+	"db/database"
 )
 
 type User struct {
@@ -11,7 +11,7 @@ type User struct {
 	IsAdmin  bool   `gorm:"type:bit"`
 }
 
-var DB *db.Orm
+var DB *database.Orm
 
 func init() {
 	initRepository()
@@ -22,8 +22,8 @@ func init() {
 }
 
 func initRepository() {
-	DB = &db.Orm{
-		Database: db.NewDatabase(&db.DatabaseConfig{
+	DB = &database.Orm{
+		Database: database.NewDatabase(&database.DatabaseConfig{
 			Host:     "localhost",
 			Port:     3306,
 			DBName:   "test",
@@ -34,8 +34,8 @@ func initRepository() {
 }
 
 func initData() {
-	if e := DB.First(&User{}, db.FirstOption{
-		Condition: db.Condition("name = admin and is_admin = 1"),
+	if e := DB.First(&User{}, database.FirstOption{
+		Condition: database.Condition("name = admin and is_admin = 1"),
 	}); e != nil {
 		DB.Create(&User{
 			Name:     "admin",

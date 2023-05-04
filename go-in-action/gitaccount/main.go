@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"sync"
 )
@@ -33,7 +34,7 @@ func main() {
 func IsGithubAccountSignUp(name string) bool {
 	resp, err := http.Get("https://github.com/" + name)
 	if err != nil {
-		fmt.Errorf("ERROR: %s\n", err.Error())
+		log.Printf("ERROR: %s\n", err.Error())
 	}
 	defer resp.Body.Close()
 	res := resp.StatusCode == 404

@@ -1,6 +1,6 @@
 package data
 
-import "github.com/poneding/learning-go/practice/graphql/gql/types"
+import "graphql/gql/types"
 
 var users = map[int]types.User{
 	1: {

@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+
+	"graphql/gql"
 
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
-	"github.com/poneding/learning-go/practice/graphql/gql"
 )
 
 func main() {
@@ -16,7 +18,7 @@ func main() {
 	})
 
 	if err != nil {
-		fmt.Errorf(err.Error())
+		log.Fatalf("failed to create new schema, error: %v", err)
 	}
 
 	h := handler.New(&handler.Config{

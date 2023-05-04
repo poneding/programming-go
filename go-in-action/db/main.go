@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/poneding/learning-go/practice/db/cmd/repo"
+	"db/repo"
 )
 
 func main() {

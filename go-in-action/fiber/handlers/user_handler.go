@@ -1,9 +1,10 @@
 package handlers
 
 import (
+	"fiber/config"
+	"fiber/entities"
+
 	"github.com/gofiber/fiber/v2"
-	"github.com/poneding/learning-go/practice/fiber/config"
-	"github.com/poneding/learning-go/practice/fiber/entities"
 )
 
 func GetUsers(c *fiber.Ctx) error {

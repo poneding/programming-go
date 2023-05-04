@@ -4,7 +4,11 @@ use (
 	./go-design-patterns
 	./go-in-action/chat
 	./go-in-action/goemail
+	./go-in-action/conf
+	./go-in-action/db
+	./go-in-action/fiber
 	./go-in-action/gorm-viper
+	./go-in-action/graphql
 	./go-in-action/movies-crud
 	./go-in-action/todolist/task
 	./go-in-action/todolist/user

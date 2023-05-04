@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"strconv"
 
+	"graphql/gql/data"
+	"graphql/gql/types"
+
 	"github.com/graphql-go/graphql"
-	"github.com/poneding/learning-go/practice/graphql/gql/data"
-	"github.com/poneding/learning-go/practice/graphql/gql/types"
 )
 
 var UserType = graphql.NewObject(graphql.ObjectConfig{

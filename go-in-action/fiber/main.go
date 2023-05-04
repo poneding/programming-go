@@ -3,10 +3,11 @@ package main
 import (
 	"log"
 
-	"github.com/gofiber/fiber/v2"
-	"github.com/poneding/learning-go/practice/fiber/config"
+	"fiber/config"
 
-	"github.com/poneding/learning-go/practice/fiber/handlers"
+	"github.com/gofiber/fiber/v2"
+
+	"fiber/handlers"
 )
 
 func main() {
