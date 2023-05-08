@@ -6,7 +6,7 @@ server:
 
 mysql:
   driverName: mysql
-  host: 127.0.0.1
+  host: cloud.io
   port: 3306
   database: grpc_todo_list
   username: root
@@ -15,8 +15,8 @@ mysql:
 
 etcd:
   endpoints:
-  - 127.0.0.1:2379
+  - cloud.io:2379
 
 redis:
-  address: 127.0.0.1:6379
+  address: cloud.io:6379
   password:
