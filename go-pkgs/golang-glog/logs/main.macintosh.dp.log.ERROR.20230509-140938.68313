@@ -1,0 +1,6 @@
+Log file created at: 2023/05/09 14:09:38
+Running on machine: macintosh
+Binary: Built with gc go1.20 for darwin/arm64
+Previous log: <none>
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0509 14:09:38.818335   68313 main.go:27] error

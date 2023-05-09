@@ -16,4 +16,5 @@ use (
 	./go-in-action/grpc-go
 	./go-corner
 	./go-programming-lang
+	./go-pkgs/golang-glog
 )

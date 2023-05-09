@@ -1,0 +1,11 @@
+Log file created at: 2023/05/09 14:09:38
+Running on machine: macintosh
+Binary: Built with gc go1.20 for darwin/arm64
+Previous log: <none>
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0509 14:09:38.817855   68313 main.go:13] info
+I0509 14:09:38.818214   68313 main.go:18] v1 info
+I0509 14:09:38.818219   68313 main.go:19] v2 info
+I0509 14:09:38.818221   68313 main.go:24] v2 info embedded
+W0509 14:09:38.818224   68313 main.go:26] warning
+E0509 14:09:38.818335   68313 main.go:27] error
