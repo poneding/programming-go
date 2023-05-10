@@ -68,6 +68,6 @@ go run main.go -log_dir=./logs -v=2
 go run main.go -log_dir=./logs -alsologtostderr -v=2
 ```
 
-> ⚠️ 注意：
-> 1、打印到文件需要确保 `log_dir` 目录存在；
-> 2、如果使用 `logtostderr`，则 `log_dir` 无效（不会打印到文件）。
+> ⚠️ 注意：  
+> 1、打印到文件需要确保 `log_dir` 目录存在；  
+> 2、如果使用 `logtostderr`，则 `log_dir` 无效（不会打印到文件）。  

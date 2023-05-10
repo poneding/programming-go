@@ -8,7 +8,7 @@ import (
 
 func main() {
 	SetConfigPath("./config.json")
-	// conf.SetConfigPath("./config.yaml")
+	// SetConfigPath("./config.yaml")
 	c, err := LoadConfig()
 	if err != nil {
 		fmt.Println(err)

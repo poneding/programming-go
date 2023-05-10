@@ -4,4 +4,4 @@
 
 ## Go 流行库
 
-- [-> 日志库 github.com/golang/glog](./go-pkgs/glog/README.md)
+- [-> 日志库 github.com/golang/glog](./go-pkgs/golang-glog/README.md)

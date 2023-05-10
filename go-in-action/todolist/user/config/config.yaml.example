@@ -1,7 +1,7 @@
 server:
   domain: user
   version: 1.0
-  jwtSecret: 38324
+  jwtSecret: todolist
   grpcAddress: "127.0.0.1:10001"
 
 mysqlSalve2:
