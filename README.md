@@ -5,3 +5,4 @@
 ## Go 流行库
 
 - [-> 日志库 github.com/golang/glog](./go-pkgs/golang-glog/README.md)
+- [-> uuid github.com/google/uuid](./go-pkgs/google-uuid/README.md)

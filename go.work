@@ -17,4 +17,5 @@ use (
 	./go-corner
 	./go-programming-lang
 	./go-pkgs/golang-glog
+	./go-pkgs/google-uuid
 )

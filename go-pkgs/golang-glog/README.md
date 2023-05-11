@@ -16,6 +16,8 @@ go get github.com/golang/glog
 
 ## 示例
 
+文件：*[main.go](./main.go)*
+
 ```go
 package main
 
