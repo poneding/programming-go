@@ -19,4 +19,7 @@ use (
 	./go-pkgs/golang-glog
 	./go-pkgs/google-uuid
 	./go-programming-lang
+	./go-testing/benchmark
+	./go-testing/fuzzing
+	./go-testing/unit
 )

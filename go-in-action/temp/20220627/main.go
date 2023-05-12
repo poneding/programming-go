@@ -10,7 +10,7 @@ func main() {
 	go func() {
 		for {
 			time.Sleep(200 * time.Millisecond)
-			fmt.Println("gogogo")
+			fmt.Printf("%q\n", "Hello World")
 		}
 	}()
 	<-stop
