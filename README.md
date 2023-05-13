@@ -7,6 +7,10 @@
 - [-> 日志库 github.com/golang/glog](./go-pkgs/golang-glog/README.md)
 - [-> uuid github.com/google/uuid](./go-pkgs/google-uuid/README.md)
 
+## Go 实践
+
+- [-> go-rabbitmq 实践](./go-in-action/rabbitmq-sample/README.md)
+
 ## [Go 测试](./go-testing/README.md)
 
 - [-> 单元测试](./go-testing/unit/README.md)
