@@ -5,18 +5,17 @@ import (
 	"log"
 	"os"
 	"rabbitmq-sample"
-	"time"
 )
 
 var mqurl string
 
 func main() {
-	exchange := "e1"
-	mq := rabbitmq.NewPubSubClient(mqurl, exchange)
-	for i := 0; i < 1000; i++ {
-		time.Sleep(1 * time.Second)
-		mq.Publish(fmt.Sprintf("Hello World! MSG_ID: %d", i))
-	}
+	exchange := "e2"
+	routingKey := "k1"
+	mq := rabbitmq.NewRoutingClient(mqurl, exchange, routingKey)
+	mq.Consume(func(msg string) {
+		log.Println(msg)
+	})
 }
 
 func init() {

@@ -5,18 +5,17 @@ import (
 	"log"
 	"os"
 	"rabbitmq-sample"
-	"time"
 )
 
 var mqurl string
 
 func main() {
-	exchange := "e1"
-	mq := rabbitmq.NewPubSubClient(mqurl, exchange)
-	for i := 0; i < 1000; i++ {
-		time.Sleep(1 * time.Second)
-		mq.Publish(fmt.Sprintf("Hello World! MSG_ID: %d", i))
-	}
+	exchange := "e3"
+	topicKey := "*.k2"
+	mq := rabbitmq.NewTopicClient(mqurl, exchange, topicKey)
+	mq.Consume(func(msg string) {
+		log.Println(msg)
+	})
 }
 
 func init() {

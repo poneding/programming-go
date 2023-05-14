@@ -11,11 +11,17 @@ import (
 var mqurl string
 
 func main() {
-	exchange := "e1"
-	mq := rabbitmq.NewPubSubClient(mqurl, exchange)
+	exchange := "e3"
+	topicKey1 := "topic.k1"
+	topicKey2 := "topic.k2"
+	mq1 := rabbitmq.NewTopicClient(mqurl, exchange, topicKey1)
+	mq2 := rabbitmq.NewTopicClient(mqurl, exchange, topicKey2)
 	for i := 0; i < 1000; i++ {
-		time.Sleep(1 * time.Second)
-		mq.Publish(fmt.Sprintf("Hello World! MSG_ID: %d", i))
+		time.Sleep(100 * time.Millisecond)
+		mq1.Publish(fmt.Sprintf("Hello World! MSG_ID: %d", i))
+		if i%7 == 0 {
+			mq2.Publish(fmt.Sprintf("Error message. MSG_ID: %d", i))
+		}
 	}
 }
 
