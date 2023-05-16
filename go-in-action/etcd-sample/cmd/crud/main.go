@@ -54,5 +54,4 @@ func init() {
 	etcdEndpoints = []string{
 		fmt.Sprintf("http://%s:%s", etcdHost, etcdPort),
 	}
-
 }
