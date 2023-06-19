@@ -22,4 +22,5 @@ use (
 	./go-testing/benchmark
 	./go-testing/fuzzing
 	./go-testing/unit
+	./go-testing/httptest
 )
