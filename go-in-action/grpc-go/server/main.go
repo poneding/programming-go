@@ -7,9 +7,18 @@ import (
 	"grpc-go/pb"
 	"log"
 	"net"
+	"strings"
 
 	"github.com/google/uuid"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
+)
+
+var (
+	errMissingMetadata = status.Error(codes.InvalidArgument, "missing metadata")
+	errInvalidToken    = status.Error(codes.Unauthenticated, "invalid token")
 )
 
 type server struct {
@@ -38,7 +47,8 @@ func main() {
 	}
 
 	// 2. 创建一个 gRPC 服务器
-	s := grpc.NewServer()
+	// s := grpc.NewServer()
+	s := grpc.NewServer(setupServerOptions()...)
 
 	// 3. 在 gRPC 服务器上注册 CreateUserServiceServer
 	pb.RegisterCreateUserServiceServer(s, &server{})
@@ -48,4 +58,33 @@ func main() {
 	if s.Serve(l); err != nil {
 		log.Fatalln(err)
 	}
+}
+
+// 拦截器
+func setupServerOptions() []grpc.ServerOption {
+	return []grpc.ServerOption{
+		grpc.UnaryInterceptor(unaryInterceptor),
+	}
+}
+
+func unaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
+	metadata, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return nil, errMissingMetadata
+	}
+
+	authorization := metadata.Get("authorization")
+	if len(authorization) == 0 {
+		return nil, errInvalidToken
+	}
+	if token := strings.Trim(authorization[0], "Bearer "); token != "123456" {
+		return nil, errInvalidToken
+	}
+
+	i, err := handler(ctx, req)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// return i, nil
+	return i, err
 }
