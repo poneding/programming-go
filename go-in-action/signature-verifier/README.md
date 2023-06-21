@@ -1,4 +1,4 @@
-# Golang 证书验证
+# Golang 签名验证
 
 1. 使用 openssl 升成私钥和公钥
 
