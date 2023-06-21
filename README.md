@@ -10,6 +10,7 @@
 ## Go 实践
 
 - [-> go-rabbitmq 实践](./go-in-action/rabbitmq-sample/README.md)
+- [-> go 签名验证](./go-in-action/signature-verifier/README.md)
 
 ## [Go 测试](./go-testing/README.md)
 
