@@ -11,6 +11,8 @@
 
 - [-> go-rabbitmq 实践](./go-in-action/rabbitmq-sample/README.md)
 - [-> go 签名验证](./go-in-action/signature-verifier/README.md)
+- [-> go 自定义日志](./go-in-action/custom-logger/README.md)
+- [-> go 即时通信系统](./go-in-action/im-system/README.md)
 
 ## [Go 测试](./go-testing/README.md)
 

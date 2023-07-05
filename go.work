@@ -18,6 +18,8 @@ use (
 	./go-in-action/todolist/api-gateway
 	./go-in-action/todolist/task
 	./go-in-action/todolist/user
+	./go-in-action/im-system
+	./go-in-action/custom-logger
 	./go-pkgs/golang-glog
 	./go-pkgs/google-uuid
 	./go-programming-lang
