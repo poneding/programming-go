@@ -25,7 +25,7 @@ func main() {
 	}
 
 	t2 := Create("t2", "Name is {{.Name}}\n")
-	t2.Execute(os.Stdout, map[string]string{"Name": "DingPeng"})
+	t2.Execute(os.Stdout, map[string]string{"Name": "PoneDing"})
 	t2.Execute(os.Stdout, struct{ Name string }{"JayChou"})
 
 	t3 := Create("t3", "{{if . -}} yes {{else -}} no {{end}}\n")

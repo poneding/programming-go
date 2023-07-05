@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -21,7 +21,7 @@ func main() {
 
 	fmt.Printf("Status: %s\n", resp.Status)
 	fmt.Printf("StatusCode: %d\n", resp.StatusCode)
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Errorf("ERROR: %s\n", err.Error())
 	}

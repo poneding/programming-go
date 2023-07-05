@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"mime/multipart"
 	"net/http"
 	"net/url"
@@ -24,7 +23,7 @@ func GetApi() {
 	fmt.Printf("Status: %s\n", resp.Status)
 	fmt.Printf("StatusCode: %d\n", resp.StatusCode)
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Errorf("ERROR: %s\n", err.Error())
 	}
@@ -38,7 +37,7 @@ func PostApi1() {
 
 	fmt.Printf("Status: %s\n", resp.Status)
 	fmt.Printf("StatusCode: %d\n", resp.StatusCode)
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Errorf("ERROR: %s\n", err.Error())
 	}
@@ -69,7 +68,7 @@ func PostApi2() {
 
 	fmt.Printf("Status: %s\n", resp.Status)
 	fmt.Printf("StatusCode: %d\n", resp.StatusCode)
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Errorf("ERROR: %s\n", err.Error())
 	}
@@ -95,7 +94,7 @@ func PostApi3() {
 
 	fmt.Printf("Status: %s\n", resp.Status)
 	fmt.Printf("StatusCode: %d\n", resp.StatusCode)
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Errorf("ERROR: %s\n", err.Error())
 	}
@@ -118,6 +117,7 @@ func getAccessToken() string {
 	}
 	return token.AccessToken
 }
+
 func OAuth2Api() {
 	json := `{"id":"u-001","name":"Jay","age":18}`
 	req, _ := http.NewRequest(http.MethodPost, "https://example.com/user", bytes.NewBuffer([]byte(json)))
@@ -133,7 +133,7 @@ func OAuth2Api() {
 
 	fmt.Printf("Status: %s\n", resp.Status)
 	fmt.Printf("StatusCode: %d\n", resp.StatusCode)
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Errorf("ERROR: %s\n", err.Error())
 	}
@@ -187,7 +187,7 @@ func FileApi() {
 
 	fmt.Printf("Status: %s\n", resp.Status)
 	fmt.Printf("StatusCode: %d\n", resp.StatusCode)
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Errorf("ERROR: %s\n", err.Error())
 	}

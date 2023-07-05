@@ -95,7 +95,7 @@ func Page() {
 
 	log.Println("page users:")
 	for _, u := range page {
-		log.Println("u.Id: \t%s,\tu.Name: \t%s\t", u.Id, u.Name)
+		log.Println("u.ip: \t%s,\tu.Name: \t%s\t", u.Id, u.Name)
 	}
 
 	repos.User().Sweep(&entities.User{}, orm.SweepOption{
@@ -117,7 +117,7 @@ func All() {
 	repos.User().All(&all)
 	log.Println("all users:")
 	for _, u := range all {
-		log.Printf("u.Id: \t%s,\tu.Name: \t%s\t", u.Id, u.Name)
+		log.Printf("u.ip: \t%s,\tu.Name: \t%s\t", u.Id, u.Name)
 	}
 
 	repos.User().Sweep(&entities.User{}, orm.SweepOption{

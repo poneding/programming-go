@@ -3,28 +3,32 @@ go 1.20
 use (
 	./go-corner
 	./go-design-patterns
-	./go-in-action/signature-verifier
-	./go-in-action/chat
-	./go-in-action/conf
-	./go-in-action/db
-	./go-in-action/fiber
-	./go-in-action/goemail
-	./go-in-action/gorm-viper
-	./go-in-action/graphql
-	./go-in-action/grpc-go
-	./go-in-action/movies-crud
+	./go-in-action/api
+	./go-in-action/viper-sample
+	./go-in-action/custom-logger
 	./go-in-action/etcd-sample
+	./go-in-action/fiber-sample
+	./go-in-action/file-server
+	./go-in-action/goemail
+	./go-in-action/gorilla-sample
+	./go-in-action/gorm-sample
+	./go-in-action/gorm-viper
+	./go-in-action/graphql-sample
+	./go-in-action/grpc-sample
+	./go-in-action/im-system
+	./go-in-action/jaeger-sample
 	./go-in-action/rabbitmq-sample
+	./go-in-action/redis-sample
+	./go-in-action/signature-verifier
+	./go-in-action/singleflight
 	./go-in-action/todolist/api-gateway
 	./go-in-action/todolist/task
 	./go-in-action/todolist/user
-	./go-in-action/im-system
-	./go-in-action/custom-logger
 	./go-pkgs/golang-glog
 	./go-pkgs/google-uuid
 	./go-programming-lang
 	./go-testing/benchmark
 	./go-testing/fuzzing
-	./go-testing/unit
 	./go-testing/httptest
+	./go-testing/unit
 )

@@ -51,6 +51,9 @@ func fetchArticle(id int) *Article {
 		return article
 	}
 
+	// Do 执行并返回给定函数的结果，确保一次只对给定键执行一次。
+	// 如果传入了一个副本，则该副本调用者等待原始调用完成并接收相同的结果。
+	// 返回值 shared 指示是否将 v 赋给了多个调用者。
 	v, err, shared := g.Do(strconv.Itoa(id), func() (interface{}, error) {
 		return findArticleFromDB(id), nil
 	})
@@ -81,7 +84,7 @@ func findArticleFromCache(id int) *Article {
 // 模拟从数据库中获取数据
 func findArticleFromDB(id int) *Article {
 	log.Printf("SELECT * FROM article WHERE id=%d", id)
-	article := &Article{ID: id, Content: "polarisxu"}
+	article := &Article{ID: id, Content: "Hello World"}
 	rwmutex.Lock()
 	defer rwmutex.Unlock()
 	cache[id] = article

@@ -22,7 +22,7 @@ func GenerateToken(userID uint) (string, error) {
 		UserID: userID,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expire.Unix(),
-			Issuer:    "1004125120-DINGPENG",
+			Issuer:    "1004125120-PoneDing",
 		},
 	}
 

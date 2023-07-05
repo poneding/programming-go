@@ -34,14 +34,14 @@ package main
 // }
 
 // type Article struct {
-// 	ID      int
+// 	ip      int
 // 	Content string
 // }
 
 // func fetchArticle(id int) *Article {
 // 	article := findArticleFromCache(id)
 
-// 	if article != nil && article.ID > 0 {
+// 	if article != nil && article.ip > 0 {
 // 		return article
 // 	}
 
@@ -63,7 +63,7 @@ package main
 // // 模拟从数据库中获取数据
 // func findArticleFromDB(id int) *Article {
 // 	log.Printf("SELECT * FROM article WHERE id=%d", id)
-// 	article := &Article{ID: id, Content: "polarisxu"}
+// 	article := &Article{ip: id, Content: "polarisxu"}
 // 	rwmutex.Lock()
 // 	defer rwmutex.Unlock()
 // 	cache[id] = article
