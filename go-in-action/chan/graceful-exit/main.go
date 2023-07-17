@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -22,7 +24,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	finishCh := make(chan struct{})
 
-	go func(ctx context.Context, finishCh chan struct{}) {
+	go func(ctx context.Context, finishCh chan<- struct{}) {
 		for {
 			select {
 			case <-ctx.Done():
@@ -43,13 +45,12 @@ func main() {
 	fmt.Println("finished.")
 }
 
-// func RunHttpServer() {
-// 	mux := http.NewServeMux()
-// 	mux.HandleFunc("/hello", func(rw http.ResponseWriter, r *http.Request) {
-// 		fmt.Println("Start to handle the request")
-// 		time.Sleep(time.Second * 10)
-// 		fmt.Println("Hello World!")
-// 	})
+func RunHttpServer() {
+	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("Start to handle the request")
+		time.Sleep(time.Second * 10)
+		fmt.Println("Hello World!")
+	})
 
-// 	log.Fatal(http.ListenAndServe(":8080", mux))
-// }
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}

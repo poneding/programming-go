@@ -1,0 +1,19 @@
+syntax="proto3";
+
+package pb;
+
+option go_package ="./interceptor/pb;pb";
+
+message HelloRequest{
+  string name = 1;
+}
+
+message HelloResponse{
+  int32 score = 1;
+}
+
+service HelloService{
+  rpc SayHello(HelloRequest) returns (HelloResponse);
+}
+
+// protoc --go_out=plugins=grpc:. --proto_path=./pb hello.proto
