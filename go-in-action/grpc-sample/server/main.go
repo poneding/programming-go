@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"grpc-sample/pb"
+	"io"
 	"log"
 	"net"
 	"strings"
@@ -21,13 +22,13 @@ var (
 	errInvalidToken    = status.Error(codes.Unauthenticated, "invalid token")
 )
 
-type server struct {
+type userServiceServer struct {
 	// 嵌套了一个未实现的接口，这样就可以不用实现接口中的所有方法
 	pb.UnimplementedCreateUserServiceServer
 }
 
-// 实现 CreateUserServiceServer 的 CreateUser 方法
-func (s *server) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
+// CreateUser 实现 CreateUserServiceServer 的 CreateUser 方法
+func (s *userServiceServer) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
 	if req.FirstName == "" || req.LastName == "" {
 		return nil, fmt.Errorf("first name or last name is empty: %w", errors.New("invalid request"))
 	}
@@ -51,7 +52,8 @@ func main() {
 	s := grpc.NewServer(setupServerOptions()...)
 
 	// 3. 在 gRPC 服务器上注册 CreateUserServiceServer
-	pb.RegisterCreateUserServiceServer(s, &server{})
+	pb.RegisterCreateUserServiceServer(s, &userServiceServer{})
+	pb.RegisterGreetServiceServer(s, &greetServiceServer{})
 
 	log.Println("gRPC server is running on port 8080")
 	// 4. 在监听器上启动 gRPC 服务器
@@ -68,12 +70,12 @@ func setupServerOptions() []grpc.ServerOption {
 }
 
 func unaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
-	metadata, ok := metadata.FromIncomingContext(ctx)
+	md, ok := metadata.FromIncomingContext(ctx)
 	if !ok {
 		return nil, errMissingMetadata
 	}
 
-	authorization := metadata.Get("authorization")
+	authorization := md.Get("authorization")
 	if len(authorization) == 0 {
 		return nil, errInvalidToken
 	}
@@ -87,4 +89,63 @@ func unaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServ
 	// }
 	// return i, nil
 	return i, err
+}
+
+type greetServiceServer struct {
+	pb.UnimplementedGreetServiceServer
+}
+
+func (s *greetServiceServer) SayHello(ctx context.Context, req *pb.NoParam) (*pb.HelloResponse, error) {
+	return &pb.HelloResponse{
+		Message: "Hello",
+	}, nil
+}
+
+func (s *greetServiceServer) SayHelloServerStreaming(req *pb.NamesList, stream pb.GreetService_SayHelloServerStreamingServer) error {
+	log.Printf("req.Names: %v", req.Names)
+	for _, name := range req.Names {
+		if err := stream.Send(&pb.HelloResponse{
+			Message: fmt.Sprintf("Hello %s", name),
+		}); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (s *greetServiceServer) SayHelloClientStreaming(stream pb.GreetService_SayHelloClientStreamingServer) error {
+	var messages []string
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&pb.MessagesList{Messages: messages})
+		}
+
+		if err != nil {
+			return err
+		}
+
+		log.Printf("name: %s", req.Name)
+		messages = append(messages, fmt.Sprintf("Hello %s", req.Name))
+	}
+}
+
+func (s *greetServiceServer) SayHelloBidirectionalStreaming(stream pb.GreetService_SayHelloBidirectionalStreamingServer) error {
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+
+		if err != nil {
+			return err
+		}
+
+		log.Printf("name: %s", req.Name)
+		if err := stream.Send(&pb.HelloResponse{
+			Message: fmt.Sprintf("Hello %s", req.Name),
+		}); err != nil {
+			return err
+		}
+	}
 }
