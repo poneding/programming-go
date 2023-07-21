@@ -1,3 +1,8 @@
 go-in-action/todolist/user/config/config.yaml
 
 */**.db
+
+.idea
+.vscode
+
+*/**/bin

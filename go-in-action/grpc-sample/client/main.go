@@ -21,15 +21,15 @@ func main() {
 	defer conn.Close()
 
 	// 2. 创建一个 CreateUserServiceClient 客户端
-	//createUserClient := pb.NewCreateUserServiceClient(conn)
-	//callCreateUser(createUserClient)
+	// createUserClient := pb.NewCreateUserServiceClient(conn)
+	// callCreateUser(createUserClient)
 
 	// 3. 创建一个 GreetServiceClient 客户端
 	greetClient := pb.NewGreetServiceClient(conn)
-	//callSayHello(greetClient)
-	//callSayHelloServerStreaming(greetClient)
-	callSayHelloClientStreaming(greetClient)
-	//callSayHelloBidirectionalStreaming(greetClient)
+	// callSayHello(greetClient)
+	// callSayHelloServerStreaming(greetClient)
+	// callSayHelloClientStreaming(greetClient)
+	callSayHelloBidirectionalStreaming(greetClient)
 }
 
 func callCreateUser(client pb.CreateUserServiceClient) {
