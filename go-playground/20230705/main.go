@@ -6,7 +6,7 @@ import "fmt"
 func main() {
 	var a = []any{10.123, "234"}
 
-	//var b float64
+	// var b float64
 	var b = a[0].(float64)
 
 	fmt.Println(b)

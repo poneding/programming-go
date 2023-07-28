@@ -33,4 +33,5 @@ use (
 	./go-testing/fuzzing
 	./go-testing/httptest
 	./go-testing/unit
+	go-in-action/time-rater
 )
