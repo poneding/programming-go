@@ -70,7 +70,7 @@ func (r *Register) register() error {
 
 	r.leaseID = leaseResp.ID
 
-	if r.keepAliveCh, err = r.cli.KeepAlive(context.Background(), r.leaseID); err != nil {
+	if r.keepAliveCh, err = r.cli.KeepAlive(r.cli.Ctx(), r.leaseID); err != nil {
 		return err
 	}
 

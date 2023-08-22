@@ -76,7 +76,7 @@ func (r *Register) register() error {
 
 	r.leasesID = leaseResp.ID
 
-	if r.keepAliveCh, err = r.cli.KeepAlive(context.Background(), r.leasesID); err != nil {
+	if r.keepAliveCh, err = r.cli.KeepAlive(r.cli.Ctx(), r.leasesID); err != nil {
 		return err
 	}
 
@@ -90,7 +90,7 @@ func (r *Register) register() error {
 	return err
 }
 
-// Stop stop register
+// Stop register
 func (r *Register) Stop() {
 	r.closeCh <- struct{}{}
 }
@@ -132,8 +132,8 @@ func (r *Register) keepAlive() {
 
 func (r *Register) UpdateHandler() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		weightstr := req.URL.Query().Get("weight")
-		weight, err := strconv.Atoi(weightstr)
+		weightVal := req.URL.Query().Get("weight")
+		weight, err := strconv.Atoi(weightVal)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			_, _ = w.Write([]byte(err.Error()))
