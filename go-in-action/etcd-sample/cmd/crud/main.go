@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go.etcd.io/etcd/client/v3/concurrency"
 	"log"
 	"time"
 
@@ -94,16 +95,62 @@ func main() {
 	// }
 
 	// 规范的 KeepAlive 写法
-	keepAliveRespC, err := etcdcli.KeepAlive(etcdcli.Ctx(), lease.ID)
-	failOnError(err, "Failed to keep alive")
-	// 必须消费 keepAliveRespC
-	for resp := range keepAliveRespC {
-		if resp == nil {
-			fmt.Println("lease expired")
-			break
+	go func() { // 为了不阻塞后面的分布式锁代码，这里使用 goroutine
+		keepAliveRespC, err := etcdcli.KeepAlive(etcdcli.Ctx(), lease.ID)
+		failOnError(err, "Failed to keep alive")
+		// 必须消费 keepAliveRespC
+		for resp := range keepAliveRespC {
+			if resp == nil {
+				fmt.Println("lease expired")
+				break
+			}
+			fmt.Println(resp.TTL)
 		}
-		fmt.Println(resp.TTL)
-	}
+	}()
+
+	// 6、分布式锁 --------------------------------------------------------
+	// 创建模拟会话
+	session1, err := concurrency.NewSession(etcdcli)
+	failOnError(err, "Failed to create session1")
+	defer session1.Close()
+
+	mutex1 := concurrency.NewMutex(session1, "/mylock")
+
+	session2, err := concurrency.NewSession(etcdcli)
+	failOnError(err, "Failed to create session2")
+	defer session2.Close()
+
+	mutex2 := concurrency.NewMutex(session2, "/mylock")
+
+	// 加锁
+	err = mutex1.Lock(etcdcli.Ctx())
+	failOnError(err, "Failed to lock mutex1")
+
+	mutex2C := make(chan struct{})
+	go func() {
+		defer close(mutex2C)
+
+		// TryLock 和 Lock 的区别在于，TryLock 会立即返回，不会阻塞
+		// if err := mutex2.TryLock(etcdcli.Ctx()); err != nil {
+		// 	fmt.Println("mutex2 try lock failed")
+		// 	return
+		// }
+
+		if err := mutex2.Lock(etcdcli.Ctx()); err != nil {
+			fmt.Println("mutex2 try lock failed")
+			return
+		}
+		fmt.Println("mutex2 lock success")
+	}()
+
+	// 解锁
+	time.Sleep(2 * time.Second)
+	err = mutex1.Unlock(etcdcli.Ctx())
+	failOnError(err, "Failed to unlock mutex1")
+
+	<-mutex2C
+
+	time.Sleep(10 * time.Second)
 }
 
 func failOnError(err error, msg string) {
