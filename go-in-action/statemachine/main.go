@@ -5,6 +5,8 @@ import "fmt"
 // 状态机
 // 1、StateMachine 结构，CurrentState, Transitions, Callback
 // 2、Transition 结构，FromState, ToState, Event
+
+// github.com/looplab/fsm
 func main() {
 	sm := NewStateMachine("", []Transition{
 		{From: "", To: "stopped", Event: "create"},
