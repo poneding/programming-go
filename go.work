@@ -1,4 +1,4 @@
-go 1.20
+go 1.21.3
 
 use (
 	./go-corner
@@ -8,6 +8,7 @@ use (
 	./go-in-action/etcd-sample
 	./go-in-action/fiber-sample
 	./go-in-action/file-server
+	./go-in-action/generate
 	./go-in-action/gin-sample
 	./go-in-action/goemail
 	./go-in-action/gorilla-sample
@@ -17,10 +18,13 @@ use (
 	./go-in-action/grpc-sample
 	./go-in-action/im-system
 	./go-in-action/jaeger-sample
+	./go-in-action/openfeature-demo
 	./go-in-action/rabbitmq-sample
 	./go-in-action/redis-sample
 	./go-in-action/signature-verifier
 	./go-in-action/singleflight
+	./go-in-action/sync-cond
+	./go-in-action/time-rater
 	./go-in-action/todolist/api-gateway
 	./go-in-action/todolist/task
 	./go-in-action/todolist/user
@@ -33,5 +37,4 @@ use (
 	./go-testing/fuzzing
 	./go-testing/httptest
 	./go-testing/unit
-	go-in-action/time-rater
 )
