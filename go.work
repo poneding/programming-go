@@ -25,6 +25,7 @@ use (
 	./go-in-action/singleflight
 	./go-in-action/sync-cond
 	./go-in-action/time-rater
+	./go-in-action/statemachine
 	./go-in-action/todolist/api-gateway
 	./go-in-action/todolist/task
 	./go-in-action/todolist/user
