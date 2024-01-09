@@ -2,6 +2,7 @@ go 1.21.3
 
 use (
 	./go-corner
+	./go-demos/gemini-demo
 	./go-design-patterns
 	./go-in-action/api
 	./go-in-action/custom-logger
@@ -23,9 +24,9 @@ use (
 	./go-in-action/redis-sample
 	./go-in-action/signature-verifier
 	./go-in-action/singleflight
+	./go-in-action/statemachine
 	./go-in-action/sync-cond
 	./go-in-action/time-rater
-	./go-in-action/statemachine
 	./go-in-action/todolist/api-gateway
 	./go-in-action/todolist/task
 	./go-in-action/todolist/user
