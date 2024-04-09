@@ -19,3 +19,7 @@
 - [-> 单元测试](./go-testing/unit/README.md)
 - [-> 基准测试](./go-testing/benchmark/README.md)
 - [-> 模糊测试](./go-testing/fuzzing/README.md)
+
+## Go 设计模式
+
+- [-> 扇出扇入模式](./go-design-patterns/fanout-fanin/README.md)
