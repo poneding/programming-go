@@ -1,4 +1,4 @@
-go 1.22.1
+go 1.22.4
 
 use (
 	./go-corner
@@ -7,6 +7,7 @@ use (
 	./go-in-action/api
 	./go-in-action/arr2tree
 	./go-in-action/custom-logger
+	./go-in-action/docker-inspect
 	./go-in-action/etcd-sample
 	./go-in-action/fiber-sample
 	./go-in-action/file-server
