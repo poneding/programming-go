@@ -1,5 +1,5 @@
 module wire-sample
 
-go 1.20
+go 1.24
 
-require github.com/google/wire v0.5.0
+require github.com/google/wire v0.6.0

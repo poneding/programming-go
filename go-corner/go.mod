@@ -1,3 +1,3 @@
 module go-corner
 
-go 1.20
+go 1.24

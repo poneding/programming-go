@@ -1,5 +1,5 @@
 module golang-glog
 
-go 1.20
+go 1.24
 
-require github.com/golang/glog v1.1.1
+require github.com/golang/glog v1.2.4
